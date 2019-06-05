@@ -1,6 +1,6 @@
 FROM simonanderson/ssh:centos7
-
-RUN curl -kO http://enterprise.delivery.puppetlabs.net/2018.1/ci-ready/puppet-enterprise-2018.1.5-rc1-148-gaf610b5-el-7-x86_64.tar
+RUN sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-el-7.noarch.rpm; echo "puppetlabs" | sudo yum -y install puppet-agent
+# RUN curl -kO http://enterprise.delivery.puppetlabs.net/2018.1/ci-ready/puppet-enterprise-2018.1.5-rc1-148-gaf610b5-el-7-x86_64.tar
 
 #    "puppet-master" = [
       # Autosign nodes from domain
@@ -22,4 +22,4 @@ RUN curl -kO http://enterprise.delivery.puppetlabs.net/2018.1/ci-ready/puppet-en
  #     "until sudo /opt/puppetlabs/bin/puppet agent -t; do sleep 1; done",
 
 
-COPY Dockerfile /
+COPY Dockerfile / 

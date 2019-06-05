@@ -1,0 +1,17 @@
+FROM simonanderson/ssh:centos7
+
+RUN sudo yum install -y curl gpg gcc gcc-c++ make patch autoconf automake bison libffi-devel libtool patch readline-devel sqlite-devel zlib-devel openssl-devel
+
+RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+
+RUN echo "puppetlabs" | sudo yum install -y which
+
+RUN curl -sSL https://get.rvm.io | bash -s stable
+
+RUN . /etc/profile.d/rvm.sh
+
+RUN /usr/local/rvm/bin/rvm install 2.5.1
+
+RUN /usr/local/rvm/bin/rvm use 2.5.1 --default
+
+COPY Dockerfile /
